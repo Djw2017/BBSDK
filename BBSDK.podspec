@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
                         BBSDK 是一个基础SDK，提供一些基本方法、宏等等，所有SDK都可能用到此SDK，其本身不实现任何具体功能。
                    DESC
 
-  s.homepage     = "https://coding.net/u/Dongjw_/p/BBSDK/git"
+  s.homepage     = "https://github.com/Djw2017/BBSDK"
  
   s.license      = {:type => "MIT",:file => "LICENSE"}
 
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
  
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://git.coding.net/Dongjw_/BBSDK.git" }
+  s.source       = { :git => "https://github.com/Djw2017/BBSDK.git" }
 
 
   s.source_files  = "BBSDK/*.{h,m}"
