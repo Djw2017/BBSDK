@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4916EEF81EC5CF5F000F0EEE /* BBSystemUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4916EEF71EC5CF5F000F0EEE /* BBSystemUtility.m */; };
+		492AAC341EC584710042DE0D /* UIButton+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 492AAC331EC584710042DE0D /* UIButton+BBSDK.m */; };
+		492AAC3E1EC589A30042DE0D /* UILabel+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 492AAC3D1EC589A30042DE0D /* UILabel+BBSDK.m */; };
+		492AAC411EC58CE80042DE0D /* NSMutableArray+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 492AAC401EC58CE80042DE0D /* NSMutableArray+BBSDK.m */; };
+		492AAC441EC58D3A0042DE0D /* NSDictionary+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 492AAC431EC58D3A0042DE0D /* NSDictionary+BBSDK.m */; };
+		492AAC471EC58DA10042DE0D /* NSUserDefaults+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 492AAC461EC58DA10042DE0D /* NSUserDefaults+BBSDK.m */; };
+		492AAC4A1EC58DEC0042DE0D /* NSAttributedString+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 492AAC491EC58DEC0042DE0D /* NSAttributedString+BBSDK.m */; };
+		492AAC4D1EC58E420042DE0D /* EmojiTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 492AAC4C1EC58E420042DE0D /* EmojiTextAttachment.m */; };
+		492AAC511EC594950042DE0D /* BBUIUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 492AAC501EC594950042DE0D /* BBUIUtility.m */; };
+		4952B0E01EC40AC900AC1847 /* BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952B0DF1EC40AC900AC1847 /* BBSDK.m */; };
+		4952B0E11EC40AC900AC1847 /* BBSDK.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 4952B0DE1EC40AC900AC1847 /* BBSDK.h */; };
+		4952B0ED1EC40D2400AC1847 /* NSString+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952B0EC1EC40D2400AC1847 /* NSString+BBSDK.m */; };
+		4952B0F01EC40D5800AC1847 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4952B0EF1EC40D5800AC1847 /* ImageIO.framework */; };
+		4952B0F31EC40DEF00AC1847 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4952B0F21EC40DEF00AC1847 /* UIKit.framework */; };
+		4952B0F61EC40EC200AC1847 /* NSArray+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952B0F51EC40EC200AC1847 /* NSArray+BBSDK.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4952B0D91EC40AC900AC1847 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				4952B0E11EC40AC900AC1847 /* BBSDK.h in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4916EEF61EC5CF5F000F0EEE /* BBSystemUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSystemUtility.h; sourceTree = "<group>"; };
+		4916EEF71EC5CF5F000F0EEE /* BBSystemUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSystemUtility.m; sourceTree = "<group>"; };
+		492AAC321EC584710042DE0D /* UIButton+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BBSDK.h"; sourceTree = "<group>"; };
+		492AAC331EC584710042DE0D /* UIButton+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BBSDK.m"; sourceTree = "<group>"; };
+		492AAC3C1EC589A30042DE0D /* UILabel+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+BBSDK.h"; sourceTree = "<group>"; };
+		492AAC3D1EC589A30042DE0D /* UILabel+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+BBSDK.m"; sourceTree = "<group>"; };
+		492AAC3F1EC58CE80042DE0D /* NSMutableArray+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BBSDK.h"; sourceTree = "<group>"; };
+		492AAC401EC58CE80042DE0D /* NSMutableArray+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+BBSDK.m"; sourceTree = "<group>"; };
+		492AAC421EC58D3A0042DE0D /* NSDictionary+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBSDK.h"; sourceTree = "<group>"; };
+		492AAC431EC58D3A0042DE0D /* NSDictionary+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBSDK.m"; sourceTree = "<group>"; };
+		492AAC451EC58DA10042DE0D /* NSUserDefaults+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+BBSDK.h"; sourceTree = "<group>"; };
+		492AAC461EC58DA10042DE0D /* NSUserDefaults+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+BBSDK.m"; sourceTree = "<group>"; };
+		492AAC481EC58DEC0042DE0D /* NSAttributedString+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+BBSDK.h"; sourceTree = "<group>"; };
+		492AAC491EC58DEC0042DE0D /* NSAttributedString+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+BBSDK.m"; sourceTree = "<group>"; };
+		492AAC4B1EC58E420042DE0D /* EmojiTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiTextAttachment.h; sourceTree = "<group>"; };
+		492AAC4C1EC58E420042DE0D /* EmojiTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiTextAttachment.m; sourceTree = "<group>"; };
+		492AAC4F1EC594950042DE0D /* BBUIUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUIUtility.h; sourceTree = "<group>"; };
+		492AAC501EC594950042DE0D /* BBUIUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUIUtility.m; sourceTree = "<group>"; };
+		4952B0DB1EC40AC900AC1847 /* libBBSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBBSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4952B0DE1EC40AC900AC1847 /* BBSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBSDK.h; sourceTree = "<group>"; };
+		4952B0DF1EC40AC900AC1847 /* BBSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBSDK.m; sourceTree = "<group>"; };
+		4952B0EB1EC40D2400AC1847 /* NSString+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBSDK.h"; sourceTree = "<group>"; };
+		4952B0EC1EC40D2400AC1847 /* NSString+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBSDK.m"; sourceTree = "<group>"; };
+		4952B0EF1EC40D5800AC1847 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		4952B0F11EC40DD700AC1847 /* emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emoji.plist; sourceTree = "<group>"; };
+		4952B0F21EC40DEF00AC1847 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4952B0F41EC40EC200AC1847 /* NSArray+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BBSDK.h"; sourceTree = "<group>"; };
+		4952B0F51EC40EC200AC1847 /* NSArray+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BBSDK.m"; sourceTree = "<group>"; };
+		4952B1151EC45C9F00AC1847 /* MethodMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodMacro.h; sourceTree = "<group>"; };
+		4952B1171EC45D8F00AC1847 /* PropertyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyMacro.h; sourceTree = "<group>"; };
+		4952B1191EC45E1800AC1847 /* UIMarco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMarco.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4952B0D81EC40AC900AC1847 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4952B0F31EC40DEF00AC1847 /* UIKit.framework in Frameworks */,
+				4952B0F01EC40D5800AC1847 /* ImageIO.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		492AAC4E1EC5946E0042DE0D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				492AAC4F1EC594950042DE0D /* BBUIUtility.h */,
+				492AAC501EC594950042DE0D /* BBUIUtility.m */,
+				4916EEF61EC5CF5F000F0EEE /* BBSystemUtility.h */,
+				4916EEF71EC5CF5F000F0EEE /* BBSystemUtility.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		4952B0D21EC40AC900AC1847 = {
+			isa = PBXGroup;
+			children = (
+				4952B0DD1EC40AC900AC1847 /* BBSDK */,
+				4952B0DC1EC40AC900AC1847 /* Products */,
+				4952B0EE1EC40D5800AC1847 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4952B0DC1EC40AC900AC1847 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4952B0DB1EC40AC900AC1847 /* libBBSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4952B0DD1EC40AC900AC1847 /* BBSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4952B0DE1EC40AC900AC1847 /* BBSDK.h */,
+				4952B0DF1EC40AC900AC1847 /* BBSDK.m */,
+				492AAC4E1EC5946E0042DE0D /* Utility */,
+				4952B1131EC459F000AC1847 /* Macros */,
+				4952B0E71EC40B3800AC1847 /* Categories */,
+			);
+			path = BBSDK;
+			sourceTree = "<group>";
+		};
+		4952B0E71EC40B3800AC1847 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4952B0EA1EC40CF800AC1847 /* UIKit */,
+				4952B0E81EC40B6D00AC1847 /* Foundation */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4952B0E81EC40B6D00AC1847 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				4952B0F41EC40EC200AC1847 /* NSArray+BBSDK.h */,
+				4952B0F51EC40EC200AC1847 /* NSArray+BBSDK.m */,
+				4952B0EB1EC40D2400AC1847 /* NSString+BBSDK.h */,
+				4952B0EC1EC40D2400AC1847 /* NSString+BBSDK.m */,
+				492AAC421EC58D3A0042DE0D /* NSDictionary+BBSDK.h */,
+				492AAC431EC58D3A0042DE0D /* NSDictionary+BBSDK.m */,
+				492AAC451EC58DA10042DE0D /* NSUserDefaults+BBSDK.h */,
+				492AAC461EC58DA10042DE0D /* NSUserDefaults+BBSDK.m */,
+				492AAC3F1EC58CE80042DE0D /* NSMutableArray+BBSDK.h */,
+				492AAC401EC58CE80042DE0D /* NSMutableArray+BBSDK.m */,
+				492AAC481EC58DEC0042DE0D /* NSAttributedString+BBSDK.h */,
+				492AAC491EC58DEC0042DE0D /* NSAttributedString+BBSDK.m */,
+				492AAC4B1EC58E420042DE0D /* EmojiTextAttachment.h */,
+				492AAC4C1EC58E420042DE0D /* EmojiTextAttachment.m */,
+				4952B0F11EC40DD700AC1847 /* emoji.plist */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		4952B0EA1EC40CF800AC1847 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				492AAC321EC584710042DE0D /* UIButton+BBSDK.h */,
+				492AAC331EC584710042DE0D /* UIButton+BBSDK.m */,
+				492AAC3C1EC589A30042DE0D /* UILabel+BBSDK.h */,
+				492AAC3D1EC589A30042DE0D /* UILabel+BBSDK.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		4952B0EE1EC40D5800AC1847 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4952B0F21EC40DEF00AC1847 /* UIKit.framework */,
+				4952B0EF1EC40D5800AC1847 /* ImageIO.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4952B1131EC459F000AC1847 /* Macros */ = {
+			isa = PBXGroup;
+			children = (
+				4952B1191EC45E1800AC1847 /* UIMarco.h */,
+				4952B1151EC45C9F00AC1847 /* MethodMacro.h */,
+				4952B1171EC45D8F00AC1847 /* PropertyMacro.h */,
+			);
+			path = Macros;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4952B0DA1EC40AC900AC1847 /* BBSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4952B0E41EC40AC900AC1847 /* Build configuration list for PBXNativeTarget "BBSDK" */;
+			buildPhases = (
+				4952B0D71EC40AC900AC1847 /* Sources */,
+				4952B0D81EC40AC900AC1847 /* Frameworks */,
+				4952B0D91EC40AC900AC1847 /* Copy Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BBSDK;
+			productName = BBSDK;
+			productReference = 4952B0DB1EC40AC900AC1847 /* libBBSDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4952B0D31EC40AC900AC1847 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = sinyee.babybus;
+				TargetAttributes = {
+					4952B0DA1EC40AC900AC1847 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = AMSTN4PRF9;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4952B0D61EC40AC900AC1847 /* Build configuration list for PBXProject "BBSDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4952B0D21EC40AC900AC1847;
+			productRefGroup = 4952B0DC1EC40AC900AC1847 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4952B0DA1EC40AC900AC1847 /* BBSDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4952B0D71EC40AC900AC1847 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4952B0F61EC40EC200AC1847 /* NSArray+BBSDK.m in Sources */,
+				4916EEF81EC5CF5F000F0EEE /* BBSystemUtility.m in Sources */,
+				492AAC4A1EC58DEC0042DE0D /* NSAttributedString+BBSDK.m in Sources */,
+				492AAC3E1EC589A30042DE0D /* UILabel+BBSDK.m in Sources */,
+				492AAC471EC58DA10042DE0D /* NSUserDefaults+BBSDK.m in Sources */,
+				4952B0ED1EC40D2400AC1847 /* NSString+BBSDK.m in Sources */,
+				492AAC341EC584710042DE0D /* UIButton+BBSDK.m in Sources */,
+				492AAC4D1EC58E420042DE0D /* EmojiTextAttachment.m in Sources */,
+				492AAC411EC58CE80042DE0D /* NSMutableArray+BBSDK.m in Sources */,
+				4952B0E01EC40AC900AC1847 /* BBSDK.m in Sources */,
+				492AAC441EC58D3A0042DE0D /* NSDictionary+BBSDK.m in Sources */,
+				492AAC511EC594950042DE0D /* BBUIUtility.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4952B0E21EC40AC900AC1847 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4952B0E31EC40AC900AC1847 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4952B0E51EC40AC900AC1847 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = AMSTN4PRF9;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4952B0E61EC40AC900AC1847 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = AMSTN4PRF9;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4952B0D61EC40AC900AC1847 /* Build configuration list for PBXProject "BBSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4952B0E21EC40AC900AC1847 /* Debug */,
+				4952B0E31EC40AC900AC1847 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4952B0E41EC40AC900AC1847 /* Build configuration list for PBXNativeTarget "BBSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4952B0E51EC40AC900AC1847 /* Debug */,
+				4952B0E61EC40AC900AC1847 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4952B0D31EC40AC900AC1847 /* Project object */;
+}
