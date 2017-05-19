@@ -556,7 +556,6 @@
 {
     NSString *str=[string stringByReplacingOccurrencesOfString:@"," withString:@""];
     NSUInteger numl = [str length];
-    NSLog(@"%d",numl);
     
     if (numl>3 && numl<7)
     {

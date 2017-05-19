@@ -8,7 +8,7 @@
 
 #import "UIButton+BBSDK.h"
 
-#import "UIMarco.h"
+#import "BBUIUtility.h"
 
 @implementation UIButton (BBSDK)
 
@@ -31,14 +31,14 @@
 - (void)setLeftImage:(UIImage *)image
       withRightTitle:(NSString *)title
             fontSize:(CGFloat )fontSize
-       setTitleColor:(int )color
+       setTitleColor:(NSString *)color
             forState:(UIControlState)stateType {
     
     [self.imageView setContentMode:UIViewContentModeLeft];
     [self setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)];
     [self setImage:image forState:stateType];
     [self.titleLabel setContentMode:UIViewContentModeRight];
-    [self setTitleColor:COLOR_WITH_HEX(color) forState:UIControlStateNormal];
+    [self setTitleColor:[BBUIUtility colorWithHexString:color] forState:UIControlStateNormal];
     self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [self setTitleEdgeInsets:UIEdgeInsetsMake(0.0,5.0, 0.0, 0.0)];
     [self setTitle:title forState:stateType];
@@ -48,12 +48,12 @@
 - (void)setImage:(UIImage *)image
        withTitle:(NSString *)title
         fontSize:(CGFloat )fontSize
-   setTitleColor:(int )color
+   setTitleColor:(NSString *)color
         forState:(UIControlState)stateType {
     
     [self setImage:image forState:stateType];
     if (color != 0) {
-        [self setTitleColor:COLOR_WITH_HEX(color) forState:UIControlStateNormal];
+        [self setTitleColor:[BBUIUtility colorWithHexString:color] forState:UIControlStateNormal];
     }
     self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [self setTitle:title forState:stateType];
@@ -62,14 +62,14 @@
 + (UIButton *)setImage:(UIImage *)image
              withTitle:(NSString *)title
               fontSize:(CGFloat )fontSize
-         setTitleColor:(int )color
+         setTitleColor:(NSString *)color
               forState:(UIControlState)stateType{
     
     UIButton *button = [[UIButton alloc]init];
     //    [button setImage:image forState:stateType];
     [button setBackgroundImage:image forState:stateType];
     if (color != 0) {
-        [button setTitleColor:COLOR_WITH_HEX(color) forState:UIControlStateNormal];
+        [button setTitleColor:[BBUIUtility colorWithHexString:color] forState:UIControlStateNormal];
     }
     button.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [button setTitle:NSLocalizedString(title,nil)  forState:stateType];

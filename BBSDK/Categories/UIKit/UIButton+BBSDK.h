@@ -30,7 +30,7 @@
 + (UIButton *)setImage:(UIImage *)image
              withTitle:(NSString *)title
               fontSize:(CGFloat )fontSize
-         setTitleColor:(int )color
+         setTitleColor:(NSString *)color
               forState:(UIControlState)stateType;
 
 /**
@@ -44,7 +44,7 @@
 - (void)setImage:(UIImage *)image
        withTitle:(NSString *)title
         fontSize:(CGFloat )fontSize
-   setTitleColor:(int )color
+   setTitleColor:(NSString *)color
         forState:(UIControlState)stateType;
 
 /**
@@ -58,7 +58,7 @@
 - (void)setLeftImage:(UIImage *)image
       withRightTitle:(NSString *)title
             fontSize:(CGFloat )fontSize
-       setTitleColor:(int )color
+       setTitleColor:(NSString *)color
             forState:(UIControlState)stateType;
 
 /**

@@ -91,9 +91,24 @@
  */
 + (UIImage*)imageWithColor:(UIColor*)color;
 
-+ (UIView *)getCellBottomLineViewWithColor:(int )color;
+/**
+ *  根据颜色返回图片
+ *
+ *  @param color 十六进制颜色
+ *
+ *  @return 图片
+ */
++ (UIView *)getCellBottomLineViewWithColor:(NSString *)color;
 
 
+/**
+ 字符串16进制颜色转化真正颜色
+
+ @param hexString 888888
+ @return 对应UIColor
+ */
++ (UIColor *)colorWithHexString:(NSString *)hexString;
++ (UIColor *)colorWithHexString:(NSString *)hexString withAlpha:(float)alpha;
 
 
 //*****************************************  图片 *************************************************//

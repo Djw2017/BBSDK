@@ -11,6 +11,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BBUIUtility.h"
+
 //****************************************** 版本判断  ************************************//
 
 #define IOS_SYSTEM_VERSION   [[[UIDevice currentDevice] systemVersion] floatValue]
@@ -53,14 +55,8 @@
 //*****************************************  颜色 *************************************************//
 #pragma mark - 颜色
 
-#define COLOR_WITH_HEX(rgbValue) \
-[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 \
-green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 \
-blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:1.0]
+#define COLOR_WITH_HEXSTR(color_hexstr)    [BBUIUtility colorWithHexString:color_hexstr]
 
-#define COLOR_WIHT_HEX_ALPHA(rgbValue,alphaValue) \
-[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 \
-green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 \
-blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:alphaValue]
+#define COLOR_WIHT_HEXSTR_ALPHA(color_hexstr,alphaValue)    [BBUIUtility colorWithHexString:color_hexstr withAlpha:alphaValue]
 
 #endif /* UIMarco_h */

@@ -10,7 +10,7 @@
 
 @interface UILabel (BBSDK)
 
-+ (UILabel *)setAllocLabelWithText:(NSString *)text FontOfSize:(NSUInteger)fontSize TextColor:(int )hexColor;
++ (UILabel *)setAllocLabelWithText:(NSString *)text FontOfSize:(NSUInteger)fontSize TextColor:(NSString *)hexColor;
 
 /**
  改变行间距

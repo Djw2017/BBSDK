@@ -6,8 +6,6 @@
 //  Copyright © 2017年 sinyee.babybus. All rights reserved.
 //
 
-#import "UIMarco.h"
-
 #import "BBUIUtility.h"
 
 @implementation BBUIUtility
@@ -121,7 +119,7 @@
     
     dispatch_once( &once, ^{
         
-        if (IS_IPAD) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             __supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
         }else {
             __supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
@@ -183,19 +181,69 @@
 /**
  *  根据颜色返回图片
  *
- *  @param color 颜色
+ *  @param color 十六进制颜色
  *
  *  @return 图片
  */
-+ (UIView *)getCellBottomLineViewWithColor:(int )color
++ (UIView *)getCellBottomLineViewWithColor:(NSString *)color
 {
     UIView *lineView = [[UIView alloc]init];
-    lineView.backgroundColor = COLOR_WITH_HEX(color);
+    lineView.backgroundColor = [self colorWithHexString:color];
     return lineView;
 }
 
+/**
+ 字符串16进制颜色转化真正颜色
+ 
+ @param hexString 888888
+ @return 对应UIColor
+ */
++ (UIColor *)colorWithHexString:(NSString *)hexString {
+    return [self colorWithHexString:hexString withAlpha:1];
+}
 
++ (UIColor *)colorWithHexString:(NSString *)hexString withAlpha:(float)alpha  {
+    
+    NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
+    CGFloat red, blue, green;
+    switch ([colorString length]) {
+        case 3: // #RGB
+            alpha = 1.0f;
+            red   = [self colorComponentFrom: colorString start: 0 length: 1];
+            green = [self colorComponentFrom: colorString start: 1 length: 1];
+            blue  = [self colorComponentFrom: colorString start: 2 length: 1];
+            break;
+        case 4: // #ARGB
+            alpha = [self colorComponentFrom: colorString start: 0 length: 1];
+            red   = [self colorComponentFrom: colorString start: 1 length: 1];
+            green = [self colorComponentFrom: colorString start: 2 length: 1];
+            blue  = [self colorComponentFrom: colorString start: 3 length: 1];
+            break;
+        case 6: // #RRGGBB
+            red   = [self colorComponentFrom: colorString start: 0 length: 2];
+            green = [self colorComponentFrom: colorString start: 2 length: 2];
+            blue  = [self colorComponentFrom: colorString start: 4 length: 2];
+            break;
+        case 8: // #AARRGGBB
+            alpha = [self colorComponentFrom: colorString start: 0 length: 2];
+            red   = [self colorComponentFrom: colorString start: 2 length: 2];
+            green = [self colorComponentFrom: colorString start: 4 length: 2];
+            blue  = [self colorComponentFrom: colorString start: 6 length: 2];
+            break;
+        default:
+            [NSException raise:@"Invalid color value" format: @"Color value %@ is invalid.  It should be a hex value of the form #RBG, #ARGB, #RRGGBB, or #AARRGGBB", hexString];
+            break;
+    }
+    return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
+}
 
++ (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length {
+    NSString *substring = [string substringWithRange: NSMakeRange(start, length)];
+    NSString *fullHex = length == 2 ? substring : [NSString stringWithFormat: @"%@%@", substring, substring];
+    unsigned hexComponent;
+    [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
+    return hexComponent / 255.0;
+}
 
 //*****************************************  图片 *************************************************//
 #pragma mark - 图片
@@ -212,7 +260,7 @@
 
 + (UIImage *)imageiPhoneOriPadWithName:(NSString *)name {
     UIImage *image;
-    if (IS_IPAD) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         image=[UIImage imageNamed:[NSString stringWithFormat:@"%@_pad",name]];
     }
     else{
@@ -271,7 +319,7 @@
         }
         UIGraphicsBeginImageContext(asize);
         CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [COLOR_WIHT_HEX_ALPHA(0xececec ,1) CGColor]);
+        CGContextSetFillColorWithColor(context, [[self colorWithHexString:@"ececec"] CGColor]);
         UIRectFill(CGRectMake(0, 0, asize.width, asize.height));//clear background 透明填充多出来的区域
         [image drawInRect:rect];
         newimage = UIGraphicsGetImageFromCurrentImageContext();

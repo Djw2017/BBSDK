@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BBSDK"
-  s.version      = "1.0.8"
+  s.version      = "1.0.9"
   s.summary      = "BBSDK is the foundation of all BabyBus SDKs"
 
   s.description  = <<-DESC
@@ -20,30 +20,37 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/Djw2017/BBSDK.git" }
 
-
-  s.source_files  = "BBSDK/*.{h,m}"
-  # ,"BBSDK/Utility/*.{h,m}","BBSDK/Categories/Foundation/*.{h,m}","BBSDK/Categories/UIKit/*.{h,m}","BBSDK/Macros/*.h"
-
+  s.subspec 'Utility' do |utility|
+    utility.source_files = 'BBSDK/Utility/*'
+    utility.public_header_files = 'BBSDK/Utility/*.h'
+    utility.dependency 'BBSDK/Categories/Foundation'
+  end
 
   s.subspec 'Macros' do |macros|
-    macros.source_files = 'BBSDK/Macros/**/*'
-    macros.public_header_files = 'BBSDK/Macros/**/*.h'
-   end
+    macros.source_files = 'BBSDK/Macros/*'
+    macros.public_header_files = 'BBSDK/Macros/*.h'
+    macros.dependency 'BBSDK/Utility'
+  end
 
   s.subspec 'Categories' do |categories|
+
+    categories.source_files = 'BBSDK/Categories/*.h'
 
     categories.subspec 'Foundation' do |foundation|
       foundation.source_files = 'BBSDK/Categories/Foundation/*'
       foundation.public_header_files = 'BBSDK/Categories/Foundation/*.h'
     end
+
+    categories.subspec 'UIKit' do |uikit|
+      uikit.source_files = 'BBSDK/Categories/UIKit/*'
+      uikit.public_header_files = 'BBSDK/Categories/UIKit/*.h'
+      uikit.dependency 'BBSDK/Categories/Foundation'
+      uikit.dependency 'BBSDK/Utility'
+    end
+
   end
 
-  s.subspec 'Utility' do |utility|
-    utility.source_files = 'BBSDK/Utility/**/*'
-    utility.public_header_files = 'BBSDK/Utility/**/*.h'
-    utility.dependency 'BBSDK/Macros'
-    utility.dependency 'BBSDK/Categories'
-  end
+
 
 
   s.frameworks = "UIKit", "ImageIO"

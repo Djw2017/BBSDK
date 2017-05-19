@@ -9,21 +9,22 @@
 #import "UILabel+BBSDK.h"
 #import "NSString+BBSDK.h"
 
-#import "UIMarco.h"
+#import "BBUIUtility.h"
 
 @implementation UILabel (BBSDK)
 
-+ (UILabel *)setAllocLabelWithText:(NSString *)text FontOfSize:(NSUInteger)fontSize TextColor:(int )hexColor
++ (UILabel *)setAllocLabelWithText:(NSString *)text FontOfSize:(NSUInteger)fontSize TextColor:(NSString *)hexColor
 {
     
-    if (hexColor != 0) {
+    if (!hexColor || hexColor.length <6) {
         NSLog(@"你的hex值设置错误");
         //        NSEXCE
-        [NSException raise:@"Invalid color value" format: @"Color value %d is invalid.  It should be a hex value of the form #RBG, #ARGB, #RRGGBB, or #AARRGGBB", hexColor];
+        [NSException raise:@"Invalid color value" format: @"Color value %@ is invalid.  It should be a hex value of the form #RBG, #ARGB, #RRGGBB, or #AARRGGBB", hexColor];
         return nil;
     }
+
     UILabel *label = [[UILabel alloc]init];
-    label.textColor = COLOR_WITH_HEX(hexColor);
+    label.textColor = [BBUIUtility colorWithHexString:hexColor];
     label.font = [UIFont systemFontOfSize:fontSize];
     label.text = NSLocalizedString([NSString noNilWithString:text], nil);
     //    label.textAlignment = NSTextAlignmentCenter;

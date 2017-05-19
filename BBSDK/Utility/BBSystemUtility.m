@@ -8,12 +8,14 @@
 
 #import <sys/utsname.h>
 
-#import "UIMarco.h"
 #import "NSArray+BBSDK.h"
 
 #import "BBSystemUtility.h"
 
 @implementation BBSystemUtility
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 #pragma mark - Device
 /**
@@ -282,7 +284,7 @@
 
 // 判断用户是否打开通知开关
 + (BOOL)isUIRemoteNotificationTypeNone {
-    if (!(IOS_IS_7)) { //iOS8以上包含iOS8
+    if (!([[[UIDevice currentDevice] systemVersion] intValue] == 7.0)) { //iOS8以上包含iOS8
         if ([[UIApplication sharedApplication] currentUserNotificationSettings].types  == UIUserNotificationTypeNone) { //判断用户是否打开通知开关
             return YES;
         }else {
@@ -299,3 +301,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop
