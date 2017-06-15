@@ -9,7 +9,9 @@
 #ifndef BBUtility_h
 #define BBUtility_h
 
-#import "BBUIUtility.h"
-#import "BBSystemUtility.h"
+#import "BBUIUtil.h"
+#import "BBSoundUtil.h"
+#import "BBSystemUtil.h"
+#import "BBFileUtil.h"
 
 #endif /* BBUtility_h */

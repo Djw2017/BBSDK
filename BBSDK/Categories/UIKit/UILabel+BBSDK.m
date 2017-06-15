@@ -9,7 +9,7 @@
 #import "UILabel+BBSDK.h"
 #import "NSString+BBSDK.h"
 
-#import "BBUIUtility.h"
+#import "BBUIUtil.h"
 
 @implementation UILabel (BBSDK)
 
@@ -24,7 +24,7 @@
     }
 
     UILabel *label = [[UILabel alloc]init];
-    label.textColor = [BBUIUtility colorWithHexString:hexColor];
+    label.textColor = [BBUIUtil colorWithHexString:hexColor];
     label.font = [UIFont systemFontOfSize:fontSize];
     label.text = NSLocalizedString([NSString noNilWithString:text], nil);
     //    label.textAlignment = NSTextAlignmentCenter;

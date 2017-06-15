@@ -1,5 +1,5 @@
 //
-//  BBUIUtility.h
+//  BBUIUtil.h
 //  BBSDK
 //
 //  Created by Dongjw on 17/5/12.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface BBUIUtility : NSObject
+@interface BBUIUtil : NSObject
 
 /**
  根据rootViewController获取最上层视图
@@ -111,6 +111,8 @@
 + (UIColor *)colorWithHexString:(NSString *)hexString withAlpha:(float)alpha;
 
 
+
+
 //*****************************************  图片 *************************************************//
 #pragma mark - 图片
 //图片自定义长宽
@@ -128,5 +130,27 @@
 + (UIImage *)OriginImage:(UIImage *)image scaleToSize:(CGSize)size;
 
 + (UIImage *)thumbnailWithImageWithoutScale:(UIImage *)image size:(CGSize)asize;
+
+
+
+
+//*****************************************  尺寸 *************************************************//
+#pragma mark - 尺寸
+/**
+ 16：9的比例
+ 
+ @return 比例
+ */
++ (float)getScreenFactor;
+
+/**
+ 获取屏幕高度比例
+ 
+ @return 屏幕高度比例
+ */
++ (float)getHieghtFactor;
+
+/// 像素转换为字体大小
++ (float)qsh_systemFontOfSize:(CGFloat)pxSize;
 
 @end

@@ -6,9 +6,11 @@
 //  Copyright © 2017年 sinyee.babybus. All rights reserved.
 //
 
+#import <CommonCrypto/CommonDigest.h>
 #import <ImageIO/ImageIO.h>
 
 #import "NSArray+BBSDK.h"
+#import "NSData+BBSDK.h"
 #import "NSString+BBSDK.h"
 
 @implementation NSString (BBSDK)
@@ -407,7 +409,18 @@
     return ceilf(requiredSize.height);
 }
 
-
+/**
+ 计算字符串大小
+ 
+ @param font 字体
+ @param maxSize 宽高限制，用于计算文本绘制时占据的矩形块
+ @return 文本绘制所占据的矩形空间
+ */
+- (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize{
+    NSDictionary *dict = @{NSFontAttributeName: font};
+    CGSize textSize = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
+    return textSize;
+}
 
 
 #pragma mark - NONil
@@ -697,6 +710,115 @@
     {
         return dateStr;
     }
+}
+
+
+
+
+#pragma mark - Securit
+/**
+ MD5加密
+ 
+ @return 返回加密后字符串
+ */
+- (NSString *)MD5 {
+    const char * pointer = [self UTF8String];
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(pointer, (CC_LONG)strlen(pointer), md5Buffer);
+    NSMutableString *string = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [string appendFormat:@"%02x",md5Buffer[i]];
+    return string;
+}
+
+-(NSString *) aes256_encrypt:(NSString *)key padding:(NSString *)pad
+{
+    const char *cstr = [self cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:cstr length:self.length];
+    //对数据进行加密
+    NSData *result = [data aes256_encrypt:key padding:pad];
+    
+    //转换为2进制字符串
+    if (result && result.length > 0) {
+        
+        Byte *datas = (Byte*)[result bytes];
+        NSMutableString *output = [NSMutableString stringWithCapacity:result.length * 2];
+        for(int i = 0; i < result.length; i++){
+            [output appendFormat:@"%02x", datas[i]];
+        }
+        return output;
+    }
+    return nil;
+}
+
+-(NSString *) aes256_decrypt:(NSString *)key padding:(NSString *)pad
+{
+    //转换为2进制Data
+    NSMutableData *data = [NSMutableData dataWithCapacity:self.length / 2];
+    unsigned char whole_byte;
+    char byte_chars[3] = {'\0','\0','\0'};
+    int i;
+    for (i=0; i < [self length] / 2; i++) {
+        byte_chars[0] = [self characterAtIndex:i*2];
+        byte_chars[1] = [self characterAtIndex:i*2+1];
+        whole_byte = strtol(byte_chars, NULL, 16);
+        [data appendBytes:&whole_byte length:1];
+    }
+    
+    //对数据进行解密
+    NSData* result = [data aes256_decrypt:key padding:pad];
+    if (result && result.length > 0) {
+        return [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+    }
+    return nil;
+}
+
+
+
+#pragma mark - Babybus
+/**
+ 不区分阿语包名，假如是阿语包名则进行处理，否则返回自身包名
+ 
+ @return 不区分语言的包名
+ */
+- (NSString *)notDistinguishARBundleId {
+    
+    NSArray *array = [self componentsSeparatedByString:@"."];
+    if (array.count > 4) {
+        NSRange range = [self rangeOfString:@"." options:NSBackwardsSearch];
+        return [self substringToIndex:range.location];
+    }
+    return self;
+}
+
+
+
+
+#pragma mark - Srting
+/**
+ *  返回YES,则此字符串是否包含这个字符串
+ *
+ *  @param SubStr 包含的字符串
+ *
+ *  @return YES 则为包含
+ */
+- (BOOL)hasContain:(NSString *)SubStr {
+    NSRange range = [self rangeOfString:SubStr];
+    if (range.location == NSNotFound) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+- (id)jsonValue{
+    if(self.length==0)return nil;
+    NSError *error = nil;
+    id obj =[NSJSONSerialization JSONObjectWithData:[self dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
+    if (obj==nil&&error!=nil) {
+        NSLog(@"jsonValue:%@ error:%@",self,error);
+    }
+    return obj;
 }
 
 @end

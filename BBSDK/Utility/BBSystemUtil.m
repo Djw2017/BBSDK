@@ -10,9 +10,9 @@
 
 #import "NSArray+BBSDK.h"
 
-#import "BBSystemUtility.h"
+#import "BBSystemUtil.h"
 
-@implementation BBSystemUtility
+@implementation BBSystemUtil
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -156,26 +156,101 @@
     return preferredLang;
 }
 
+/**
+ 获取包名
+ 
+ @return 包名
+ */
++ (NSString *)getBundleID {
+    return [[NSBundle mainBundle] bundleIdentifier];
+}
+
+/**
+ 是否安装指定应用
+ 
+ @param bundleID 包名
+ @return 是否安装
+ */
++ (BOOL)isAppInstalled:(NSString *)bundleID {
+    NSString *appKey = bundleID;
+    NSRange range = [appKey rangeOfString:@"://"];
+    
+    if(range.location == NSNotFound){
+        appKey = [appKey stringByAppendingString:@"://"];
+    }
+    
+    if ([@"com.sinyee.babybus.recommandApp2://" isEqualToString:appKey] || [@"com.sinyee.babybus.recommendapp://" isEqualToString:appKey]) {
+        BOOL install_1  = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"com.sinyee.babybus.recommandApp2://"]];
+        BOOL install_2  = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"com.sinyee.babybus.recommendapp://"]];
+        if (install_1||install_2) {
+            return YES;
+        }else {
+            return NO;
+        }
+    }else {
+        return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:appKey]];
+    }
+    return NO;
+}
+
+/**
+ 根据语言获取数字请求服务端
+ 
+ @param language zh、zht、en、de
+ @return 服务端语言数字
+ */
++ (int)getLanguageInt:(NSString *)lang {
+    int result = 0;
+    
+    NSString *language = lang;
+    if ([language isEqualToString:@"zh"]) {
+        result = 1;
+    } else if ([language isEqualToString:@"zht"]) {
+        result = 2;
+    } else if ([language isEqualToString:@"en"]) {
+        result = 3;
+    } else if ([language isEqualToString:@"de"]) {
+        result = 4;
+    } else if ([language isEqualToString:@"ja"]) {
+        result = 5;
+    } else if ([language isEqualToString:@"fr"]) {
+        result = 6;
+    } else if ([language isEqualToString:@"ru"]) {
+        result = 7;
+    } else if ([language isEqualToString:@"ko"]) {
+        result = 8;
+    } else if ([language isEqualToString:@"ar"]) {
+        result = 9;
+    } else if ([language isEqualToString:@"pt"]) {
+        result = 10;
+    } else if ([language isEqualToString:@"es"]) {
+        result = 11;
+    } else {
+        result = 3;
+    }
+    
+    return result;
+}
 
 
 
 #pragma mark - time
 //年
-+(NSString *)getCurrentYear {
++ (NSString *)getCurrentYear {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterY = [[NSDateFormatter alloc] init];
     [dateformatterY setDateFormat:@"YYYY"];
     return [dateformatterY stringFromDate:currentDate];//当前年份
 }
 //月
-+(NSString *)getCurrentMonth {
++ (NSString *)getCurrentMonth {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterM = [[NSDateFormatter alloc] init];
     [dateformatterM setDateFormat:@"MM"];
     return [dateformatterM stringFromDate:currentDate];//当前月份
 }
 //日
-+(NSString *)getCurrentDay {
++ (NSString *)getCurrentDay {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
     [dateformatterD setDateFormat:@"dd"];
@@ -183,7 +258,7 @@
 }
 
 //时
-+(NSString *)getCurrentTime {
++ (NSString *)getCurrentHour {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
     [dateformatterD setDateFormat:@"hh"];
@@ -191,7 +266,7 @@
 }
 
 //时
-+(NSString *)getCurrentMinute {
++ (NSString *)getCurrentMinute {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
     [dateformatterD setDateFormat:@"mm"];
@@ -199,14 +274,14 @@
 }
 
 //秒
-+(NSString *)getCurrentSecond {
++ (NSString *)getCurrentSecond {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
     [dateformatterD setDateFormat:@"ss"];
     return [dateformatterD stringFromDate:currentDate];
 }
 
-+(NSString *)getCurrentDate:(NSString *)format{
++ (NSString *)getCurrentDate:(NSString *)format{
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
     [dateformatterD setDateFormat:format];
@@ -219,6 +294,13 @@
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval a=[dat timeIntervalSince1970];
     return [NSString stringWithFormat:@"%f", a];
+}
+
+/// 当前时间戳，长整型
++ (long long)getCurrentTime {
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    long long date = (long long)time;
+    return date;
 }
 
 /**

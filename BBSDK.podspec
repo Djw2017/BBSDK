@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BBSDK"
-  s.version      = "1.0.9"
+  s.version      = "1.0.10"
   s.summary      = "BBSDK is the foundation of all BabyBus SDKs"
 
   s.description  = <<-DESC
@@ -58,6 +58,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
 
 end

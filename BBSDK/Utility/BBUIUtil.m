@@ -1,14 +1,14 @@
 //
-//  BBUIUtility.m
+//  BBUIUtil.m
 //  BBSDK
 //
 //  Created by Dongjw on 17/5/12.
 //  Copyright © 2017年 sinyee.babybus. All rights reserved.
 //
 
-#import "BBUIUtility.h"
+#import "BBUIUtil.h"
 
-@implementation BBUIUtility
+@implementation BBUIUtil
 
 + (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
     
@@ -38,7 +38,7 @@
 + (UIViewController*)topViewController {
     
     //TODO 暂时没有考虑 UIPopoverController
-    return [BBUIUtility topViewControllerWithRootViewController:[BBUIUtility getCurrentVC]];
+    return [BBUIUtil topViewControllerWithRootViewController:[BBUIUtil getCurrentVC]];
 }
 
 + (UINavigationController *)topNavigationController {
@@ -64,19 +64,19 @@
 
 + (UIView *)topView {
     
-    return [BBUIUtility topViewController].view;
+    return [BBUIUtil topViewController].view;
 }
 
 + (UIView *)rootView {
     
-    return [BBUIUtility getCurrentVC].view;
+    return [BBUIUtil getCurrentVC].view;
 }
 
 + (UIViewController *)getCurrentVC {
     
     UIViewController *rootViewCtr = nil;
     
-    UIWindow *window = [BBUIUtility window];
+    UIWindow *window = [BBUIUtil window];
     
     if (nil == window.rootViewController) {
         ///fix bug
@@ -132,8 +132,8 @@
     
     BOOL isSupport = NO;
     
-    for (NSString *sup in [BBUIUtility supportOrientations]) {
-        if ([sup isEqualToString:[BBUIUtility stringWithOrientation:orientation]]) {
+    for (NSString *sup in [BBUIUtil supportOrientations]) {
+        if ([sup isEqualToString:[BBUIUtil stringWithOrientation:orientation]]) {
             isSupport = YES;
         }
     }
@@ -143,11 +143,11 @@
 
 + (BOOL)isSupportPortraitOrientation {
     
-    return [BBUIUtility isSupportOrientation:UIInterfaceOrientationPortrait] || [BBUIUtility isSupportOrientation:UIInterfaceOrientationPortraitUpsideDown];
+    return [BBUIUtil isSupportOrientation:UIInterfaceOrientationPortrait] || [BBUIUtil isSupportOrientation:UIInterfaceOrientationPortraitUpsideDown];
 }
 + (BOOL)isSupportLandscapeOrientation {
     
-    return [BBUIUtility isSupportOrientation:UIInterfaceOrientationLandscapeLeft] || [BBUIUtility isSupportOrientation:UIInterfaceOrientationLandscapeRight];
+    return [BBUIUtil isSupportOrientation:UIInterfaceOrientationLandscapeLeft] || [BBUIUtil isSupportOrientation:UIInterfaceOrientationLandscapeRight];
 }
 
 
@@ -326,6 +326,57 @@
         UIGraphicsEndImageContext();
     }
     return newimage;
+}
+
+
+
+
+//*****************************************  图片 *************************************************//
+#pragma mark - 尺寸
+/**
+ 16：9的比例
+
+ @return 比例
+ */
++ (float)getScreenFactor {
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    if ([UIDevice currentDevice].orientation != UIDeviceOrientationPortrait) {
+        if (rect.size.width < rect.size.height) {
+            rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
+        }
+    }
+    float scaleX = rect.size.width / 960;
+    float scaleY = rect.size.height / 540;
+    if (scaleX > scaleY ) {
+        return scaleY;
+    }else{
+        return scaleX;
+    }
+}
+
+/**
+ 获取屏幕高度比例
+
+ @return 屏幕高度比例
+ */
++ (float)getHieghtFactor {
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    if ([UIDevice currentDevice].orientation != UIDeviceOrientationPortrait) {
+        if (rect.size.width < rect.size.height) {
+            rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
+        }
+    }
+    
+    float width = rect.size.width;
+    float height = rect.size.height;
+    
+    return height / (width / 960) / 540;
+}
+
+/// 像素转换为字体大小
++ (float)qsh_systemFontOfSize:(CGFloat)pxSize {
+    float pt = (pxSize/96)*72;
+    return pt;
 }
 
 @end

@@ -73,6 +73,15 @@
  */
 - (CGFloat)getHeightOfFont:(UIFont *)textFont width:(CGFloat)textWidth LineSpacing:(CGFloat)lineSpacing;
 
+/**
+ 计算字符串大小
+ 
+ @param font 字体
+ @param maxSize 宽高限制，用于计算文本绘制时占据的矩形块
+ @return 文本绘制所占据的矩形空间
+ */
+- (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;
+
 
 
 
@@ -199,4 +208,43 @@
  */
 + (NSString *)prettyDateWithReference:(NSString *)strTime withTime:(NSInteger)timer;
 
+
+
+
+#pragma mark - Securit
+/**
+ MD5加密
+
+ @return 返回加密后字符串
+ */
+- (NSString *)MD5;
+
+-(NSString *)aes256_decrypt:(NSString *)key padding:(NSString *)pad;
+-(NSString *)aes256_encrypt:(NSString *)key padding:(NSString *)pad;
+
+
+
+
+#pragma mark - Babybus
+/**
+ 不区分阿语包名，假如是阿语包名则进行处理，否则返回自身包名
+ 
+ @return 不区分语言的包名
+ */
+- (NSString *)notDistinguishARBundleId;
+
+
+
+
+#pragma mark - Srting
+/**
+ *  返回YES,则此字符串是否包含这个字符串
+ *
+ *  @param SubStr 包含的字符串
+ *
+ *  @return YES 则为包含
+ */
+- (BOOL)hasContain:(NSString *)SubStr;
+
+- (id)jsonValue;
 @end

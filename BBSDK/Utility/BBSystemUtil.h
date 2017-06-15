@@ -1,5 +1,5 @@
 //
-//  BBSystemUtility.h
+//  BBSystemUtil.h
 //  BBSDK
 //
 //  Created by Dongjw on 17/5/12.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface BBSystemUtility : NSObject
+@interface BBSystemUtil : NSObject
 
 #pragma mark - Device
 /**
@@ -40,7 +40,28 @@
  */
 + (NSString*)getPreferredLanguage;
 
+/**
+ 获取包名
 
+ @return 包名
+ */
++ (NSString *)getBundleID;
+
+/**
+ 是否安装指定应用
+
+ @param bundleID 包名
+ @return 是否安装
+ */
++ (BOOL)isAppInstalled:(NSString *)bundleID;
+
+/**
+ 根据语言获取数字请求服务端
+
+ @param language zh、zht、en、de
+ @return 服务端语言数字
+ */
++ (int)getLanguageInt:(NSString *)language;
 
 
 #pragma mark - time
@@ -49,10 +70,13 @@
 + (NSString *)getCurrentMonth;
 + (NSString *)getCurrentDay;
 + (NSString *)getCurrentDate:(NSString *)format;
-+ (NSString *)getCurrentTime;
++ (NSString *)getCurrentHour;
 
 //当前时间戳
 + (NSString *)timestamp;
+
+/// 当前时间戳，长整型
++ (long long)getCurrentTime;
 
 /**
  是否是圣诞节
