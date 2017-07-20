@@ -51,15 +51,15 @@
 + (UIWindow *)window;
 
 /**
- *	@brief	获取根视图
+ *	@brief	获取视图
  *
  *  @since  ver 1.0
  *
  */
-+ (UIView *)rootView;
++ (UIView *)currentView;
 
 /**
- *	@brief	获取根视图控制器
+ *	@brief	获取当前控制器
  *
  *  @since  ver 1.0
  *

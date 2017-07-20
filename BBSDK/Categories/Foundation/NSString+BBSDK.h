@@ -246,5 +246,12 @@
  */
 - (BOOL)hasContain:(NSString *)SubStr;
 
+/**
+ 判断字符串是否为nil或者为空字符
+
+ @return 可用
+ */
+- (BOOL)isValidate;
+
 - (id)jsonValue;
 @end

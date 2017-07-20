@@ -13,9 +13,9 @@
 		491E81BD1EF018280048BC31 /* BBUIUtil.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 492AAC4F1EC594950042DE0D /* BBUIUtil.h */; };
 		491E81BE1EF018280048BC31 /* BBSystemUtil.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 4916EEF61EC5CF5F000F0EEE /* BBSystemUtil.h */; };
 		491E81BF1EF018280048BC31 /* BBMacros.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 495B9A311ECEE50600F5D74B /* BBMacros.h */; };
-		491E81C01EF018280048BC31 /* UIMarco.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 4952B1191EC45E1800AC1847 /* UIMarco.h */; };
-		491E81C11EF018280048BC31 /* MethodMacro.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 4952B1151EC45C9F00AC1847 /* MethodMacro.h */; };
-		491E81C21EF018280048BC31 /* PropertyMacro.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 4952B1171EC45D8F00AC1847 /* PropertyMacro.h */; };
+		491E81C01EF018280048BC31 /* BBUIMarco.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 4952B1191EC45E1800AC1847 /* BBUIMarco.h */; };
+		491E81C11EF018280048BC31 /* BBMethodMacro.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 4952B1151EC45C9F00AC1847 /* BBMethodMacro.h */; };
+		491E81C21EF018280048BC31 /* BBPropertyMacro.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 4952B1171EC45D8F00AC1847 /* BBPropertyMacro.h */; };
 		491E81C31EF018280048BC31 /* BBCategories.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 495B9A2F1ECEE37000F5D74B /* BBCategories.h */; };
 		491E81C41EF018280048BC31 /* UIButton+BBSDK.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 492AAC321EC584710042DE0D /* UIButton+BBSDK.h */; };
 		491E81C51EF018280048BC31 /* UILabel+BBSDK.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 492AAC3C1EC589A30042DE0D /* UILabel+BBSDK.h */; };
@@ -43,6 +43,8 @@
 		4952B0F01EC40D5800AC1847 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4952B0EF1EC40D5800AC1847 /* ImageIO.framework */; };
 		4952B0F31EC40DEF00AC1847 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4952B0F21EC40DEF00AC1847 /* UIKit.framework */; };
 		4952B0F61EC40EC200AC1847 /* NSArray+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952B0F51EC40EC200AC1847 /* NSArray+BBSDK.m */; };
+		498E65F01EF5347900D11F78 /* NSBundle+BBSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 498E65EF1EF5347900D11F78 /* NSBundle+BBSDK.m */; };
+		49955F561EFB69E1009A6034 /* NSBundle+BBSDK.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 498E65EE1EF5347900D11F78 /* NSBundle+BBSDK.h */; };
 		49D8AE601EF0CCC900E084B7 /* BBDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D8AE5F1EF0CCC900E084B7 /* BBDataUtil.m */; };
 		49D8AE651EF0D9D400E084B7 /* BBDataUtil.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 49D8AE5E1EF0CCC900E084B7 /* BBDataUtil.h */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				49955F561EFB69E1009A6034 /* NSBundle+BBSDK.h in Copy Files */,
 				49D8AE651EF0D9D400E084B7 /* BBDataUtil.h in Copy Files */,
 				491E82061EF028010048BC31 /* BBSoundUtil.h in Copy Files */,
 				491E82071EF028010048BC31 /* BBFileUtil.h in Copy Files */,
@@ -61,9 +64,9 @@
 				491E81BD1EF018280048BC31 /* BBUIUtil.h in Copy Files */,
 				491E81BE1EF018280048BC31 /* BBSystemUtil.h in Copy Files */,
 				491E81BF1EF018280048BC31 /* BBMacros.h in Copy Files */,
-				491E81C01EF018280048BC31 /* UIMarco.h in Copy Files */,
-				491E81C11EF018280048BC31 /* MethodMacro.h in Copy Files */,
-				491E81C21EF018280048BC31 /* PropertyMacro.h in Copy Files */,
+				491E81C01EF018280048BC31 /* BBUIMarco.h in Copy Files */,
+				491E81C11EF018280048BC31 /* BBMethodMacro.h in Copy Files */,
+				491E81C21EF018280048BC31 /* BBPropertyMacro.h in Copy Files */,
 				491E81C31EF018280048BC31 /* BBCategories.h in Copy Files */,
 				491E81C41EF018280048BC31 /* UIButton+BBSDK.h in Copy Files */,
 				491E81C51EF018280048BC31 /* UILabel+BBSDK.h in Copy Files */,
@@ -114,12 +117,14 @@
 		4952B0F21EC40DEF00AC1847 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4952B0F41EC40EC200AC1847 /* NSArray+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BBSDK.h"; sourceTree = "<group>"; };
 		4952B0F51EC40EC200AC1847 /* NSArray+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BBSDK.m"; sourceTree = "<group>"; };
-		4952B1151EC45C9F00AC1847 /* MethodMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodMacro.h; sourceTree = "<group>"; };
-		4952B1171EC45D8F00AC1847 /* PropertyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyMacro.h; sourceTree = "<group>"; };
-		4952B1191EC45E1800AC1847 /* UIMarco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMarco.h; sourceTree = "<group>"; };
+		4952B1151EC45C9F00AC1847 /* BBMethodMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMethodMacro.h; sourceTree = "<group>"; };
+		4952B1171EC45D8F00AC1847 /* BBPropertyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBPropertyMacro.h; sourceTree = "<group>"; };
+		4952B1191EC45E1800AC1847 /* BBUIMarco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUIMarco.h; sourceTree = "<group>"; };
 		495B9A2F1ECEE37000F5D74B /* BBCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCategories.h; sourceTree = "<group>"; };
 		495B9A301ECEE4C000F5D74B /* BBUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUtility.h; sourceTree = "<group>"; };
 		495B9A311ECEE50600F5D74B /* BBMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMacros.h; sourceTree = "<group>"; };
+		498E65EE1EF5347900D11F78 /* NSBundle+BBSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BBSDK.h"; sourceTree = "<group>"; };
+		498E65EF1EF5347900D11F78 /* NSBundle+BBSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BBSDK.m"; sourceTree = "<group>"; };
 		49D8AE5E1EF0CCC900E084B7 /* BBDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBDataUtil.h; sourceTree = "<group>"; };
 		49D8AE5F1EF0CCC900E084B7 /* BBDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBDataUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +202,8 @@
 			children = (
 				4952B0F41EC40EC200AC1847 /* NSArray+BBSDK.h */,
 				4952B0F51EC40EC200AC1847 /* NSArray+BBSDK.m */,
+				498E65EE1EF5347900D11F78 /* NSBundle+BBSDK.h */,
+				498E65EF1EF5347900D11F78 /* NSBundle+BBSDK.m */,
 				4952B0EB1EC40D2400AC1847 /* NSString+BBSDK.h */,
 				4952B0EC1EC40D2400AC1847 /* NSString+BBSDK.m */,
 				491E81B51EF009170048BC31 /* NSData+BBSDK.h */,
@@ -240,9 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				495B9A311ECEE50600F5D74B /* BBMacros.h */,
-				4952B1191EC45E1800AC1847 /* UIMarco.h */,
-				4952B1151EC45C9F00AC1847 /* MethodMacro.h */,
-				4952B1171EC45D8F00AC1847 /* PropertyMacro.h */,
+				4952B1191EC45E1800AC1847 /* BBUIMarco.h */,
+				4952B1151EC45C9F00AC1847 /* BBMethodMacro.h */,
+				4952B1171EC45D8F00AC1847 /* BBPropertyMacro.h */,
 			);
 			path = Macros;
 			sourceTree = "<group>";
@@ -273,7 +280,7 @@
 		4952B0D31EC40AC900AC1847 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = sinyee.babybus;
 				TargetAttributes = {
 					4952B0DA1EC40AC900AC1847 = {
@@ -312,6 +319,7 @@
 				49D8AE601EF0CCC900E084B7 /* BBDataUtil.m in Sources */,
 				491E81E81EF01E610048BC31 /* BBSoundUtil.m in Sources */,
 				492AAC471EC58DA10042DE0D /* NSUserDefaults+BBSDK.m in Sources */,
+				498E65F01EF5347900D11F78 /* NSBundle+BBSDK.m in Sources */,
 				491E81B71EF009170048BC31 /* NSData+BBSDK.m in Sources */,
 				4952B0ED1EC40D2400AC1847 /* NSString+BBSDK.m in Sources */,
 				492AAC341EC584710042DE0D /* UIButton+BBSDK.m in Sources */,

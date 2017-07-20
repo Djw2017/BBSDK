@@ -9,8 +9,8 @@
 #ifndef BBMacros_h
 #define BBMacros_h
 
-#import "UIMarco.h"
-#import "MethodMacro.h"
-#import "PropertyMacro.h"
+#import "BBUIMarco.h"
+#import "BBMethodMacro.h"
+#import "BBPropertyMacro.h"
 
 #endif /* BBMacros_h */

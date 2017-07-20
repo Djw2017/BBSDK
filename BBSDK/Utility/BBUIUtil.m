@@ -67,13 +67,27 @@
     return [BBUIUtil topViewController].view;
 }
 
-+ (UIView *)rootView {
++ (UIView *)currentView {
     
     return [BBUIUtil getCurrentVC].view;
 }
 
 + (UIViewController *)getCurrentVC {
     
+    UIViewController *result = nil;
+    
+    if (result == nil) {
+        UIViewController *appRootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        UIViewController *topVC = appRootVC;
+        if (topVC.presentedViewController) {
+            result = topVC.presentedViewController;
+        }
+    }
+    
+    if (result) {
+        return result;
+    }
+
     UIViewController *rootViewCtr = nil;
     
     UIWindow *window = [BBUIUtil window];

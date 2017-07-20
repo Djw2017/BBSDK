@@ -34,6 +34,13 @@
 + (NSString *)devicePlatForm;
 
 /**
+ 获取系统版本号
+
+ @return 系统版本
+ */
++ (NSString *)getSystemVersion;
+
+/**
  获取当前语言
 
  @return 当前语言
@@ -41,11 +48,26 @@
 + (NSString*)getPreferredLanguage;
 
 /**
+ 判断当前环境是否是繁体中文
+ 
+ @return 是繁体中文
+ */
++ (BOOL)isTraditionalChinese;
+
+/**
  获取包名
 
  @return 包名
  */
 + (NSString *)getBundleID;
+
+/**
+ * 获得应用程序的版本
+ *
+ * @return 应用程序的版本
+ *
+ */
++ (NSString *)getVersion;
 
 /**
  是否安装指定应用
@@ -62,6 +84,8 @@
  @return 服务端语言数字
  */
 + (int)getLanguageInt:(NSString *)language;
+
+
 
 
 #pragma mark - time
@@ -91,6 +115,8 @@
  @return 是新年
  */
 + (BOOL)isNewYear;
+
+
 
 
 #pragma mark - App

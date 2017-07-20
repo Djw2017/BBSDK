@@ -54,7 +54,7 @@ SingletonM;
     if ([[soundPath substringToIndex:4] isEqualToString:@"http"]) {
         data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:soundPath]];
     }else{
-        if ([[BBFileUtil sharedInstance] fileExits:soundPath]) {
+        if ([BBFileUtil fileExits:soundPath]) {
             data = [[NSData alloc] initWithContentsOfFile:soundPath];
         }else{
             NSString *path = [[NSBundle mainBundle] pathForResource:soundPath ofType:@"mp3"];
@@ -80,7 +80,7 @@ SingletonM;
     if ([soundDic length] > 4 && [[soundDic substringToIndex:4] isEqualToString:@"http"]) {
         soundData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:soundDic]];
     }else{
-        if ([[BBFileUtil sharedInstance] fileExits:soundDic]) {
+        if ([BBFileUtil fileExits:soundDic]) {
             soundData = [[NSData alloc] initWithContentsOfFile:soundDic];
         }else{
             NSString *path = [[NSBundle mainBundle] pathForResource:soundDic ofType:@"mp3"];
@@ -109,7 +109,7 @@ SingletonM;
     if ([[soundPath substringToIndex:4] isEqualToString:@"http"]) {
         data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:soundPath]];
     }else{
-        if ([[BBFileUtil sharedInstance] fileExits:soundPath]) {
+        if ([BBFileUtil fileExits:soundPath]) {
             data = [[NSData alloc] initWithContentsOfFile:soundPath];
         }else{
             NSString *path = [[NSBundle mainBundle] pathForResource:soundPath ofType:@"mp3"];

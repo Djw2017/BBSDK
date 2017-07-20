@@ -1,13 +1,13 @@
 //
-//  MethodMacro.h
+//  BBMethodMacro.h
 //  BBSDK
 //
 //  Created by Dongjw on 17/5/11.
 //  Copyright © 2017年 sinyee.babybus. All rights reserved.
 //
 
-#ifndef MethodMacro_h
-#define MethodMacro_h
+#ifndef BBMethodMacro_h
+#define BBMethodMacro_h
 
 // 单例
 #pragma mark - 单例
@@ -82,4 +82,4 @@ static id _instance; \
 #endif
 #endif
 
-#endif /* MethodMacro_h */
+#endif /* BBMethodMacro_h */

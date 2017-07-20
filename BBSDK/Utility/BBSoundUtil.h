@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MethodMacro.h"
+#import "BBMethodMacro.h"
 
 @interface BBSoundUtil : NSObject
 

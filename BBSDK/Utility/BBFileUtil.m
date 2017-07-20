@@ -8,18 +8,13 @@
 
 #import "BBFileUtil.h"
 
-
-
 @implementation BBFileUtil
-
-SingletonM;
 
 /**
  *文件是否存在
  *filePath 绝对路径
  */
-- (BOOL)fileExits:(NSString *)filePath
-{
++ (BOOL)fileExits:(NSString *)filePath {
     return [[NSFileManager defaultManager] fileExistsAtPath:filePath];
 }
 
@@ -27,25 +22,26 @@ SingletonM;
  *删除文件
  *filePath 绝对路径
  */
-- (BOOL)removeFile:(NSString *)filePath
-{
++ (BOOL)removeFile:(NSString *)filePath {
     NSError *error;
     return [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
 }
 
+
+
+
+#pragma mark - 获取
 /**
  *获取home文件路径
  */
-- (NSString *)getHomePath
-{
++ (NSString *)getHomePath {
     return NSHomeDirectory();
 }
 
 /**
  *获取Documents文件路径
  */
-- (NSString *)getDocumentsPath
-{
++ (NSString *)getDocumentsPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
    return [paths objectAtIndex:0];
 }
@@ -53,7 +49,7 @@ SingletonM;
 /**
  *获取Caches文件路径
  */
-- (NSString *)getCachesPath{
++ (NSString *)getCachesPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     return [paths objectAtIndex:0];
 }
@@ -61,18 +57,8 @@ SingletonM;
 /**
  *获取tmp文件路径
  */
-- (NSString *)getTmpPath
-{
++ (NSString *)getTmpPath {
     return NSTemporaryDirectory();
-}
-
-/**
- *创建文件夹
- */
-- (BOOL)createFile:(NSString *)path
-{
-    NSError *error;
-    return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
 }
 
 /**
@@ -82,8 +68,7 @@ SingletonM;
  *
  *  @return 目录路径
  */
-- (NSString *)getDirectoryPath:(NSSearchPathDirectory)directory
-{
++ (NSString *)getDirectoryPath:(NSSearchPathDirectory)directory {
     NSArray *paths = nil;
     switch (directory) {
         case NSDocumentDirectory:
@@ -103,6 +88,58 @@ SingletonM;
 }
 
 /**
+ 获取指定文件路径
+ 
+ @param directory 主
+ @param folderName 目录
+ @param file 文件名
+ @return 全路径
+ */
++ (NSString *)getFilePathInDirectory:(NSSearchPathDirectory)directory folder:(NSString *)folderName fileName:(NSString *)file{
+    NSString *directoryPath = [self getDirectoryPath:directory];
+    directoryPath = [directoryPath stringByAppendingString:[NSString stringWithFormat:@"%@%@",folderName,file]];
+    return directoryPath;
+}
+
+/**
+ 根据文件名与系统目录获取绝对路径
+ 
+ @param directory 开始目录
+ @param name 文件名
+ @param extension 文件后缀
+ @return 文件绝对路径
+ */
++ (NSString *)getFilePathInDirectory:(NSSearchPathDirectory)directory fileName:(NSString *)name fileExtension:(NSString *)extension {
+    NSString *document = NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES).lastObject;
+    NSString *path =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@",name,extension]];
+    return path;
+}
+
+/**
+ 获取文件大小
+ 
+ @param path 文件绝对路径
+ @return 文件大小
+ */
++ (long )getFileSizeForPath:(NSString *)path {
+    NSDictionary* dictFile = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil];
+    long nFileSize = (long)[dictFile fileSize];
+    return nFileSize;
+}
+
+
+
+
+#pragma mark - 创建
+/**
+ *创建文件夹
+ */
++ (BOOL)createFile:(NSString *)path {
+    NSError *error;
+    return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+}
+
+/**
  *  指定目录下创建文件夹
  *
  *  @param directory  目录
@@ -110,8 +147,7 @@ SingletonM;
  *
  *  @return 创建结果
  */
-- (NSString *)createFolderInDirectory:(NSSearchPathDirectory)directory folder:(NSString *)folderName
-{
++ (NSString *)createFolderInDirectory:(NSSearchPathDirectory)directory folder:(NSString *)folderName {
     NSString *directoryPath;
     BOOL isDir              = YES;
     directoryPath = [self getDirectoryPath:directory];
@@ -127,33 +163,17 @@ SingletonM;
     return directoryPath;
 }
 
-/**
- 获取指定文件路径
-
- @param directory 主
- @param folderName 目录
- @param file 文件名
- @return 全路径
- */
-- (NSString *)getFilePathInDirectory:(NSSearchPathDirectory)directory folder:(NSString *)folderName fileName:(NSString *)file{
-    NSString *directoryPath;
-    directoryPath = [self getDirectoryPath:directory];
-    directoryPath = [directoryPath stringByAppendingString:[NSString stringWithFormat:@"%@%@",folderName,file]];
-    return directoryPath;
-}
-
 /*
  *文件重命名
  */
-- (BOOL)renameFile:(NSString *)filePath moveFile:(NSString *)targetPath targetName:(NSString *)targetName
-{
++ (BOOL)renameFile:(NSString *)filePath moveFile:(NSString *)targetPath targetName:(NSString *)targetName {
     NSError *error;
     NSString *target = [targetPath stringByAppendingPathComponent:targetName];
     return [[NSFileManager defaultManager] moveItemAtPath:filePath toPath:target error:&error];
 }
 
--(NSURL *)createDirectory:(NSArray *)directorys
-{
++ (NSURL *)createDirectory:(NSArray *)directorys {
+    
     NSURL *documentURL = nil;
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -178,8 +198,8 @@ SingletonM;
     return documentURL;
 }
 
--(NSURL *)createDirectoryWithFileName:(NSString *)filePath
-{
++ (NSURL *)createDirectoryWithFileName:(NSString *)filePath {
+    
     NSArray *directorys = [filePath componentsSeparatedByString:@"/"];
     NSURL *documentURL = nil;
     NSError *error = nil;
@@ -205,13 +225,23 @@ SingletonM;
     return documentURL;
 }
 
-- (NSArray *)getAllFileNamesWithPath:(NSString *)path
-{
+/**
+ 获取文件夹下所有文件的名称
+ @param path 路径
+ @return 包含文件夹名称的数组
+ */
++ (NSArray *)getAllFileNamesWithPath:(NSString *)path{
     return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
 }
 
-- (void)removeBeyondItems:(NSString *)path beyondNum:(int)num
-{
+#pragma mark - 移除
+/**
+ 根据创建时间升序，删除文件下超出传入个数的子文件
+ @param path 路径
+ @param num 超出的数量
+ */
++ (void)removeBeyondItems:(NSString *)path beyondNum:(int)num {
+    
     NSArray *arrays = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
     
     if ([arrays count] > num) {

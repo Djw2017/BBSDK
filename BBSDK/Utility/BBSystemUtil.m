@@ -8,6 +8,7 @@
 
 #import <sys/utsname.h>
 
+#import "NSString+BBSDK.h"
 #import "NSArray+BBSDK.h"
 
 #import "BBSystemUtil.h"
@@ -129,6 +130,16 @@
     return platform;
 }
 
+/**
+ 获取系统版本号
+ 
+ @return 系统版本
+ */
++ (NSString *)getSystemVersion {
+    float version = [[UIDevice currentDevice].systemVersion floatValue];
+    NSString *versionStr = [NSString stringWithFormat:@"%f", version];
+    return versionStr;
+}
 
 /**
  获取当前语言
@@ -157,12 +168,37 @@
 }
 
 /**
+ 判断当前环境是否是繁体中文
+ 
+ @return 是繁体中文
+ */
++ (BOOL)isTraditionalChinese {
+    // get the current language and country config
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
+    NSString *currentLanguage = [languages objectAtIndex:0];
+    
+    return [currentLanguage hasContain:@"zh-Hant"] || [currentLanguage isEqualToString:@"zh-HK"] || [currentLanguage isEqualToString:@"zh-TW"];
+}
+
+/**
  获取包名
  
  @return 包名
  */
 + (NSString *)getBundleID {
     return [[NSBundle mainBundle] bundleIdentifier];
+}
+
+/**
+ * 获得应用程序的版本
+ *
+ * @return 应用程序的版本
+ *
+ */
++ (NSString *)getVersion {
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    return version;
 }
 
 /**
@@ -231,6 +267,7 @@
     
     return result;
 }
+
 
 
 
@@ -354,6 +391,7 @@
     }
     return NO;
 }
+
 
 
 

@@ -811,6 +811,18 @@
     }
 }
 
+/**
+ 判断字符串是否可用，为nil或者空字符则不可用
+ 
+ @return 可用
+ */
+- (BOOL)isValidate {
+    if (![self isEqualToString:@""] && self) {
+        return YES;
+    }
+    return NO;
+}
+
 - (id)jsonValue{
     if(self.length==0)return nil;
     NSError *error = nil;

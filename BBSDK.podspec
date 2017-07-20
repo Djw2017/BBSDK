@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BBSDK"
-  s.version      = "1.0.10"
+  s.version      = "1.1.0"
   s.summary      = "BBSDK is the foundation of all BabyBus SDKs"
 
   s.description  = <<-DESC
