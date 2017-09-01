@@ -17,7 +17,7 @@
  *  @param normalImage 普通情况图片
  *  @param highlightImage 点击选中时的图片
  */
-- (void)setBackground:(UIImage *)normalImage    :(UIImage *)highlightImage;
+- (void)setNormalImage:(UIImage *)normalImage withHighlighted:(UIImage *)highlightImage;
 
 /**
  *  设置按钮信息

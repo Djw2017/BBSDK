@@ -346,7 +346,6 @@
 
 
 //*****************************************  图片 *************************************************//
-#pragma mark - 尺寸
 /**
  16：9的比例
 
@@ -358,19 +357,29 @@
         if (rect.size.width < rect.size.height) {
             rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
         }
-    }
-    float scaleX = rect.size.width / 960;
-    float scaleY = rect.size.height / 540;
-    if (scaleX > scaleY ) {
-        return scaleY;
+        float scaleX = rect.size.width / 960;
+        float scaleY = rect.size.height / 540;
+        if (scaleX > scaleY ) {
+            return scaleY;
+        }else{
+            return scaleX;
+        }
     }else{
-        return scaleX;
+        if (rect.size.width > rect.size.height) {
+            rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
+        }
+        float scaleX = rect.size.width / 540;
+        float scaleY = rect.size.height / 960;
+        if (scaleX > scaleY ) {
+            return scaleY;
+        }else{
+            return scaleX;
+        }
     }
 }
 
 /**
  获取屏幕高度比例
-
  @return 屏幕高度比例
  */
 + (float)getHieghtFactor {
@@ -379,12 +388,21 @@
         if (rect.size.width < rect.size.height) {
             rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
         }
+        
+        float width = rect.size.width;
+        float height = rect.size.height;
+        
+        return height / (width / 960) / 540;
+    }else{
+        if (rect.size.width > rect.size.height) {
+            rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
+        }
+        
+        float width = rect.size.width;
+        float height = rect.size.height;
+        
+        return width / (height / 960) / 540;
     }
-    
-    float width = rect.size.width;
-    float height = rect.size.height;
-    
-    return height / (width / 960) / 540;
 }
 
 /// 像素转换为字体大小

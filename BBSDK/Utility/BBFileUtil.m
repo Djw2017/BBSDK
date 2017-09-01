@@ -10,6 +10,7 @@
 
 @implementation BBFileUtil
 
+#pragma mark - 检测文件是否存在
 /**
  *文件是否存在
  *filePath 绝对路径
@@ -18,6 +19,7 @@
     return [[NSFileManager defaultManager] fileExistsAtPath:filePath];
 }
 
+#pragma mark - 删除文件
 /**
  *删除文件
  *filePath 绝对路径
@@ -27,40 +29,29 @@
     return [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
 }
 
-
-
-
-#pragma mark - 获取
-/**
- *获取home文件路径
- */
+#pragma mark - 获取home文件路径
 + (NSString *)getHomePath {
     return NSHomeDirectory();
 }
 
-/**
- *获取Documents文件路径
- */
+#pragma mark - 获取Documents文件路径
 + (NSString *)getDocumentsPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
    return [paths objectAtIndex:0];
 }
 
-/**
- *获取Caches文件路径
- */
+#pragma mark - 获取Caches文件路径
 + (NSString *)getCachesPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     return [paths objectAtIndex:0];
 }
 
-/**
- *获取tmp文件路径
- */
+#pragma mark - 获取tmp文件路径
 + (NSString *)getTmpPath {
     return NSTemporaryDirectory();
 }
 
+#pragma mark - 获取指定目录的路径
 /**
  *  获取指定目录的路径
  *
@@ -87,6 +78,7 @@
     return path;
 }
 
+#pragma mark - 获取指定文件路径
 /**
  获取指定文件路径
  
@@ -101,6 +93,7 @@
     return directoryPath;
 }
 
+#pragma mark - 根据文件名与系统目录获取绝对路径
 /**
  根据文件名与系统目录获取绝对路径
  
@@ -115,6 +108,7 @@
     return path;
 }
 
+#pragma mark - 获取文件大小
 /**
  获取文件大小
  
@@ -130,7 +124,7 @@
 
 
 
-#pragma mark - 创建
+#pragma mark - 创建文件夹
 /**
  *创建文件夹
  */
@@ -139,6 +133,7 @@
     return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
 }
 
+#pragma mark - 指定目录下创建文件夹
 /**
  *  指定目录下创建文件夹
  *
@@ -163,6 +158,7 @@
     return directoryPath;
 }
 
+#pragma mark - 文件夹重命名
 /*
  *文件重命名
  */
@@ -172,6 +168,13 @@
     return [[NSFileManager defaultManager] moveItemAtPath:filePath toPath:target error:&error];
 }
 
+#pragma mark - 指定路径创建文件
+/**
+ 根据数组拆分成路径，在Document下创建文件夹，例如@[a,b]，则创建Documents/a/b
+
+ @param directorys 文件夹路径
+ @return 绝对路径
+ */
 + (NSURL *)createDirectory:(NSArray *)directorys {
     
     NSURL *documentURL = nil;
@@ -180,15 +183,15 @@
     documentURL = [fileManager URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
     //拼接文件夹路径
     for (NSString *dir in directorys) {
-        documentURL = [documentURL   URLByAppendingPathComponent:dir];
+        documentURL = [documentURL URLByAppendingPathComponent:dir];
     }
     //获取文件夹属性
     NSDictionary *properties = [documentURL resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] error:&error];
-    if (properties == nil)
-    {
+    if (properties == nil) {
+        
         //创建文件夹， withIntermediateDirectories = YES (创建额外需要的文件夹，创建父目录不存在的子目录，自动将父目录创建)
-        if (![fileManager createDirectoryAtPath:[documentURL path] withIntermediateDirectories:YES attributes:nil error:&error])
-        {
+        if (![fileManager createDirectoryAtPath:[documentURL path] withIntermediateDirectories:YES attributes:nil error:&error]) {
+            
             NSLog(@"不能创建目录 %@\n%@",[documentURL path], [error localizedDescription]);
             documentURL = nil;
         }
@@ -198,6 +201,7 @@
     return documentURL;
 }
 
+#pragma mark - 创建文件
 + (NSURL *)createDirectoryWithFileName:(NSString *)filePath {
     
     NSArray *directorys = [filePath componentsSeparatedByString:@"/"];
@@ -225,21 +229,12 @@
     return documentURL;
 }
 
-/**
- 获取文件夹下所有文件的名称
- @param path 路径
- @return 包含文件夹名称的数组
- */
+#pragma mark - 获取文件夹下所有的文件名称
 + (NSArray *)getAllFileNamesWithPath:(NSString *)path{
     return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
 }
 
-#pragma mark - 移除
-/**
- 根据创建时间升序，删除文件下超出传入个数的子文件
- @param path 路径
- @param num 超出的数量
- */
+#pragma mark - 根据文件创建时间删除文件
 + (void)removeBeyondItems:(NSString *)path beyondNum:(int)num {
     
     NSArray *arrays = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];

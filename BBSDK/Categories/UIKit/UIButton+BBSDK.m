@@ -22,7 +22,7 @@
     self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
 }
 
-- (void)setBackground:(UIImage *)normalImage    :(UIImage *)highlightImage
+- (void)setNormalImage:(UIImage *)normalImage withHighlighted:(UIImage *)highlightImage
 {
     [self setBackgroundImage:normalImage forState:UIControlStateNormal];
     [self setBackgroundImage:highlightImage forState:UIControlStateHighlighted];

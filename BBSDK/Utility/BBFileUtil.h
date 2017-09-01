@@ -112,13 +112,14 @@
 + (BOOL)renameFile:(NSString *)filePath moveFile:(NSString *)targetPath targetName:(NSString *)targetName;
 
 /**
- 创建文件
- @param directorys 文件路径
- @return 返回文件url
+ 根据数组拆分成路径，在Document下创建文件夹，例如@[a,b]，则创建Documents/a/b
+ 
+ @param directorys 文件夹路径
+ @return 绝对路径
  */
 + (NSURL *)createDirectory:(NSArray *)directorys;
 
-+ (NSURL *)createDirectoryWithFileName:(NSString *)filePath;
++(NSURL *)createDirectoryWithFileName:(NSString *)filePath;
 
 /**
  获取文件夹下所有文件的名称
@@ -128,7 +129,7 @@
 + (NSArray *)getAllFileNamesWithPath:(NSString *)path;
 
 /**
- 根据创建时间升序，删除文件下超出传入个数的子文件
+ 删除文件下超出的子文件
  @param path 路径
  @param num 超出的数量
  */

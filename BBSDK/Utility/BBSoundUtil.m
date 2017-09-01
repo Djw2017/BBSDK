@@ -27,6 +27,7 @@
 
 SingletonM;
 
+#pragma mark - 实例化音频播放
 - (AVAudioPlayer *)soundPlayer {
     if (!_soundPlayer) {
         AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:_soundData error:nil];
@@ -37,6 +38,7 @@ SingletonM;
     return _soundPlayer;
 }
 
+#pragma mark - 实例化播放一次的
 - (AVAudioPlayer *)oncePlayer {
     if (!_oncePlayer) {
         AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:_onceData error:nil];
@@ -47,7 +49,7 @@ SingletonM;
     return _oncePlayer;
 }
 
-// 播放一次
+#pragma mark - 播放声音一次
 - (void)playOnce:(NSString *)soundPath
 {
     NSData *data;
@@ -68,9 +70,7 @@ SingletonM;
     }
 }
 
-/**
- *loops 为-1时是循环，最好不要用这个播放循环音频
- */
+#pragma mark - 播放音频音效（loops 为-1时是循环，最好不要用这个播放循环音频）
 - (void)playSound:(NSString *)soundDic loops:(NSInteger)loops
 {
     if (!self.avArray || self.avArray == nil) {
@@ -99,10 +99,7 @@ SingletonM;
     }
 }
 
-
-/**
- @param path 路径
- */
+#pragma mark - 音频播放（播放完整，不被打断）
 - (void)playOnceWithPath:(NSString *)soundPath
 {
     NSData *data;
@@ -123,6 +120,7 @@ SingletonM;
     }
 }
 
+#pragma mark - 是否可以播放
 - (BOOL)canPlayOnceWithPath
 {
     if (self.oncePlayer != nil && [self.oncePlayer isPlaying]) {
@@ -151,6 +149,7 @@ SingletonM;
     }
 }
 
+#pragma maark - 停止播放
 - (void)stopOnePlay
 {
     if (self.oncePlayer) {
