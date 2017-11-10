@@ -53,6 +53,8 @@
 #define IS_IPHONE_6P            [[UIScreen mainScreen] bounds].size.height == 736.0f
 
 
+#define heightRate    SCREEN_WIDTH/736
+#define widthRate     SCREEN_HEIGHT/414
 
 
 //*****************************************  颜色 *************************************************//

@@ -7,6 +7,9 @@
 //
 
 #import "BBUIUtil.h"
+#import <QuartzCore/QuartzCore.h>
+#import "BBUIMarco.h"
+#import "BBFileUtil.h"
 
 @implementation BBUIUtil
 
@@ -51,7 +54,6 @@
 }
 
 + (UIWindow *)window {
-    
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if (window.windowLevel != UIWindowLevelNormal) {
         for(window in [UIApplication sharedApplication].windows) {
@@ -84,7 +86,7 @@
         }
     }
     
-    if (result) {
+    if (result != nil) {
         return result;
     }
 
@@ -164,7 +166,19 @@
     return [BBUIUtil isSupportOrientation:UIInterfaceOrientationLandscapeLeft] || [BBUIUtil isSupportOrientation:UIInterfaceOrientationLandscapeRight];
 }
 
-
+/**
+ 当前屏幕朝向
+ 
+ @return 横屏
+ */
++ (BOOL)isLandscape {
+    UIInterfaceOrientation duration = [[UIApplication sharedApplication] statusBarOrientation];
+    if(duration == UIDeviceOrientationPortrait || duration == UIDeviceOrientationPortraitUpsideDown) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
 
 
 //*****************************************  颜色 *************************************************//
@@ -346,6 +360,7 @@
 
 
 //*****************************************  图片 *************************************************//
+#pragma mark - 尺寸
 /**
  16：9的比例
 
@@ -357,24 +372,13 @@
         if (rect.size.width < rect.size.height) {
             rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
         }
-        float scaleX = rect.size.width / 960;
-        float scaleY = rect.size.height / 540;
-        if (scaleX > scaleY ) {
-            return scaleY;
-        }else{
-            return scaleX;
-        }
+    }
+    float scaleX = rect.size.width / 960;
+    float scaleY = rect.size.height / 540;
+    if (scaleX > scaleY ) {
+        return scaleY;
     }else{
-        if (rect.size.width > rect.size.height) {
-            rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
-        }
-        float scaleX = rect.size.width / 540;
-        float scaleY = rect.size.height / 960;
-        if (scaleX > scaleY ) {
-            return scaleY;
-        }else{
-            return scaleX;
-        }
+        return scaleX;
     }
 }
 
@@ -388,27 +392,56 @@
         if (rect.size.width < rect.size.height) {
             rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
         }
-        
-        float width = rect.size.width;
-        float height = rect.size.height;
-        
-        return height / (width / 960) / 540;
-    }else{
-        if (rect.size.width > rect.size.height) {
-            rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.height, rect.size.width);
-        }
-        
-        float width = rect.size.width;
-        float height = rect.size.height;
-        
-        return width / (height / 960) / 540;
     }
+    
+    float width = rect.size.width;
+    float height = rect.size.height;
+    
+    return height / (width / 960) / 540;
 }
 
 /// 像素转换为字体大小
 + (float)qsh_systemFontOfSize:(CGFloat)pxSize {
-    float pt = (pxSize/96)*72;
+    float pt = (pxSize / 96) * 72;
     return pt;
+}
+
++ (UIImage *)imageWithScreenShot
+{
+    CGSize imageSize = CGSizeZero;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    imageSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIWindow *window = [BBUIUtil window];
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, window.center.x, window.center.y);
+    CGContextConcatCTM(context, window.transform);
+    CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
+    if (!IOS8_OR_LATER) {
+        if (orientation == UIInterfaceOrientationLandscapeLeft)
+        {
+            CGContextRotateCTM(context, M_PI_2);
+            CGContextTranslateCTM(context, 0, -imageSize.width);
+        }else if (orientation == UIInterfaceOrientationLandscapeRight) {
+            CGContextRotateCTM(context, -M_PI_2);
+            CGContextTranslateCTM(context, -imageSize.height, 0);
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            CGContextRotateCTM(context, M_PI);
+            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
+        }
+    }
+    
+    if (!window.hidden && [window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
+    {
+        [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:NO];
+    }
+    
+    CGContextRestoreGState(context);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end

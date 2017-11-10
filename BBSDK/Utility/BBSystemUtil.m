@@ -130,7 +130,22 @@
     return platform;
 }
 
-#pragma mark - 当前设备语言
+/**
+ 获取系统版本号
+ 
+ @return 系统版本
+ */
++ (NSString *)getSystemVersion {
+    float version = [[UIDevice currentDevice].systemVersion floatValue];
+    NSString *versionStr = [NSString stringWithFormat:@"%f", version];
+    return versionStr;
+}
+
+/**
+ 获取当前语言
+ 
+ @return 当前语言
+ */
 + (NSString*)getPreferredLanguage {
     
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -152,7 +167,11 @@
     return preferredLang;
 }
 
-#pragma mark - 是否为繁体中文
+/**
+ 判断当前环境是否是繁体中文
+ 
+ @return 是繁体中文
+ */
 + (BOOL)isTraditionalChinese {
     // get the current language and country config
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -162,12 +181,32 @@
     return [currentLanguage hasContain:@"zh-Hant"] || [currentLanguage isEqualToString:@"zh-HK"] || [currentLanguage isEqualToString:@"zh-TW"];
 }
 
-#pragma mark - 应用包名
+/**
+ 获取包名
+ 
+ @return 包名
+ */
 + (NSString *)getBundleID {
     return [[NSBundle mainBundle] bundleIdentifier];
 }
 
-#pragma 应用是否安装
+/**
+ * 获得应用程序的版本
+ *
+ * @return 应用程序的版本
+ *
+ */
++ (NSString *)getVersion {
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    return version;
+}
+
+/**
+ 是否安装指定应用
+ 
+ @param bundleID 包名
+ @return 是否安装
+ */
 + (BOOL)isAppInstalled:(NSString *)bundleID {
     NSString *appKey = bundleID;
     NSRange range = [appKey rangeOfString:@"://"];
@@ -190,20 +229,21 @@
     return NO;
 }
 
-#pragma mark - 获得应用程序的版本
-+ (NSString *)getVersion {
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
-    return version;
+/**
+ 获取app名称
+ 
+ @return DisplayName
+ */
++ (NSString *)getAppName {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
-#pragma mark - 获取系统版本
-+ (NSString *)getSystemVersion {
-    float version = [[UIDevice currentDevice].systemVersion floatValue];
-    NSString *versionStr = [NSString stringWithFormat:@"%f", version];
-    return versionStr;
-}
-
-#pragma mark - 根据语言获取数字请求服务端
+/**
+ 根据语言获取数字请求服务端
+ 
+ @param language zh、zht、en、de
+ @return 服务端语言数字
+ */
 + (int)getLanguageInt:(NSString *)lang {
     int result = 0;
     
@@ -230,6 +270,14 @@
         result = 10;
     } else if ([language isEqualToString:@"es"]) {
         result = 11;
+    }else if ([language isEqualToString:@"vi"]) {
+        result = 12;
+    }else if ([language isEqualToString:@"hi"]) {
+        result = 13;
+    }else if ([language isEqualToString:@"id"]) {
+        result = 14;
+    }else if ([language isEqualToString:@"th"]) {
+        result = 15;
     } else {
         result = 3;
     }
@@ -237,25 +285,22 @@
     return result;
 }
 
-
-
 #pragma mark - time
-#pragma mark - 当前年份
+//年
 + (NSString *)getCurrentYear {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterY = [[NSDateFormatter alloc] init];
     [dateformatterY setDateFormat:@"YYYY"];
     return [dateformatterY stringFromDate:currentDate];//当前年份
 }
-#pragma mark - 当前月份
+//月
 + (NSString *)getCurrentMonth {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterM = [[NSDateFormatter alloc] init];
     [dateformatterM setDateFormat:@"MM"];
     return [dateformatterM stringFromDate:currentDate];//当前月份
 }
-
-#pragma mark - 当前日
+//日
 + (NSString *)getCurrentDay {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
@@ -263,7 +308,7 @@
     return [dateformatterD stringFromDate:currentDate];
 }
 
-#pragma mark - 当前时
+//时
 + (NSString *)getCurrentHour {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
@@ -271,7 +316,7 @@
     return [dateformatterD stringFromDate:currentDate];
 }
 
-#pragma mar - 当前分
+//时
 + (NSString *)getCurrentMinute {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
@@ -279,7 +324,7 @@
     return [dateformatterD stringFromDate:currentDate];
 }
 
-#pragma mark - 当前秒
+//秒
 + (NSString *)getCurrentSecond {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
@@ -287,7 +332,6 @@
     return [dateformatterD stringFromDate:currentDate];
 }
 
-#pragma mark - 当前时间（年月日时分）
 + (NSString *)getCurrentDate:(NSString *)format{
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateformatterD = [[NSDateFormatter alloc] init];
@@ -295,7 +339,7 @@
     return [dateformatterD stringFromDate:currentDate];
 }
 
-#pragma mark - 当前时间（时间戳的string类型值）
+//当前时间戳
 + (NSString *)timestamp{
     
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -303,14 +347,18 @@
     return [NSString stringWithFormat:@"%f", a];
 }
 
-#pragma mark - 获取时间戳（longlong类型值）
+/// 当前时间戳，长整型
 + (long long)getCurrentTime {
     NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
     long long date = (long long)time;
     return date;
 }
 
-#pragma mark - 是否在圣诞节期间
+/**
+ 是否是圣诞节
+
+ @return 是圣诞节
+ */
 + (BOOL)isChristmas{
     NSDate *now = [NSDate date];
     
@@ -330,7 +378,11 @@
     return NO;
 }
 
-#pragma mark - 是否在新年的时间段内
+/**
+ 是否是新年
+
+ @return 是新年
+ */
 + (BOOL)isNewYear{
     NSDate *now = [NSDate date];
     
@@ -353,8 +405,6 @@
     }
     return NO;
 }
-
-
 
 #pragma mark - App
 + (NSString *)currentVersion {

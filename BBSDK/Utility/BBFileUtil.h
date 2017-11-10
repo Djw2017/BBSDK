@@ -119,7 +119,7 @@
  */
 + (NSURL *)createDirectory:(NSArray *)directorys;
 
-+(NSURL *)createDirectoryWithFileName:(NSString *)filePath;
++ (NSURL *)createDirectoryWithFileName:(NSString *)filePath;
 
 /**
  获取文件夹下所有文件的名称
@@ -129,10 +129,12 @@
 + (NSArray *)getAllFileNamesWithPath:(NSString *)path;
 
 /**
- 删除文件下超出的子文件
+ 根据创建时间升序，删除文件下超出传入个数的子文件
  @param path 路径
  @param num 超出的数量
  */
 + (void)removeBeyondItems:(NSString *)path beyondNum:(int)num;
+
++ (NSDictionary *)getFileInfo:(NSString *)filePath;
 
 @end

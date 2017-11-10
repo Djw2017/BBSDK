@@ -280,7 +280,7 @@
 		4952B0D31EC40AC900AC1847 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = sinyee.babybus;
 				TargetAttributes = {
 					4952B0DA1EC40AC900AC1847 = {

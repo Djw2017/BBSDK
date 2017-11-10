@@ -77,6 +77,12 @@
 + (BOOL)isSupportPortraitOrientation;
 + (BOOL)isSupportLandscapeOrientation;
 
+/**
+ 当前屏幕朝向
+
+ @return 横屏
+ */
++ (BOOL)isLandscape;
 
 
 
@@ -152,5 +158,7 @@
 
 /// 像素转换为字体大小
 + (float)qsh_systemFontOfSize:(CGFloat)pxSize;
+
++ (UIImage *)imageWithScreenShot;
 
 @end

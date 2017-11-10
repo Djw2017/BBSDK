@@ -34,6 +34,13 @@
 + (NSString *)devicePlatForm;
 
 /**
+ 获取系统版本号
+
+ @return 系统版本
+ */
++ (NSString *)getSystemVersion;
+
+/**
  获取当前语言
 
  @return 当前语言
@@ -52,9 +59,23 @@
 
  @return 包名
  */
-+ (NSString *)getSystemVersion;
 + (NSString *)getBundleID;
+
+/**
+ * 获得应用程序的版本
+ *
+ * @return 应用程序的版本
+ *
+ */
 + (NSString *)getVersion;
+
+/**
+ 获取app名称
+
+ @return DisplayName
+ */
++ (NSString *)getAppName;
+
 /**
  是否安装指定应用
 
@@ -72,6 +93,8 @@
 + (int)getLanguageInt:(NSString *)language;
 
 
+
+
 #pragma mark - time
 //获取当前日期
 + (NSString *)getCurrentYear;
@@ -79,6 +102,7 @@
 + (NSString *)getCurrentDay;
 + (NSString *)getCurrentDate:(NSString *)format;
 + (NSString *)getCurrentHour;
++ (NSString *)getCurrentMinute;
 
 //当前时间戳
 + (NSString *)timestamp;

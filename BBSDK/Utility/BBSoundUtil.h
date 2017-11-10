@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "BBMethodMacro.h"
 
 @interface BBSoundUtil : NSObject
@@ -15,6 +16,7 @@ SingletonH;
 
 /**
  播放音频，一次
+
  @param soundPath 播放地址：本地、网络、下载
  */
 - (void)playOnce:(NSString *)soundPath;
