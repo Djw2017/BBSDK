@@ -8,6 +8,7 @@
 
 #ifndef BBUIMarco_h
 #define BBUIMarco_h
+#import "Const.h"
 
 #import <UIKit/UIKit.h>
 
@@ -41,6 +42,7 @@
 #pragma mark - 设备 的 宽高
 
 // 设备全屏宽
+
 #define SCREEN_WIDTH    ((IOS_IS_7&&[UIApplication sharedApplication].statusBarOrientation != UIInterfaceOrientationPortrait)?[[UIScreen mainScreen] bounds].size.height:[[UIScreen mainScreen] bounds].size.width)
 
 // 设备全屏高
@@ -49,13 +51,16 @@
 //判断iPhone型号
 #define IS_BEGORE_IPHONE_5      [[UIScreen mainScreen] bounds].size.height <= 568.0f
 #define IS_IPHONE_5             [[UIScreen mainScreen] bounds].size.height == 568.0f
-#define IS_IPHONE_6             [[UIScreen mainScreen] bounds].size.height == 667.0f
+#define IS_IPHONE_6             ([[UIScreen mainScreen] bounds].size.height == 667.0f)
 #define IS_IPHONE_6P            [[UIScreen mainScreen] bounds].size.height == 736.0f
+#define IS_iPhoneX              ((SCREEN_WIDTH == 812 && SCREEN_HEIGHT == 375)||(SCREEN_WIDTH == 375 && SCREEN_HEIGHT == 812))
+
+#define heightRate    (IS_iPhoneX?715:SCREEN_WIDTH)/736
+#define widthRate     SCREEN_HEIGHT/(IS_iPhoneX?320:414)
 
 
-#define heightRate    SCREEN_WIDTH/736
-#define widthRate     SCREEN_HEIGHT/414
-
+//设备尺寸比例
+#define SCALE_WIDTH    SCREEN_WIDTH/1920
 
 //*****************************************  颜色 *************************************************//
 #pragma mark - 颜色

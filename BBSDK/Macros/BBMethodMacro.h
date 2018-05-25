@@ -44,7 +44,6 @@ static id _instance; \
 #define BBLog(FORMAT, ...) fprintf(stderr,"%s:%d　\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 #else
 #define BBLog(FORMAT, ...) nil
-#define NSLog(FORMAT, ...) nil
 #endif
 
 
@@ -52,7 +51,7 @@ static id _instance; \
 
 #pragma mark - Block
 #ifndef weakify
-#if DEBUG
+#ifdef DEBUG
 #if __has_feature(objc_arc)
 #define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
 #else
@@ -68,7 +67,7 @@ static id _instance; \
 #endif
 
 #ifndef strongify
-#if DEBUG
+#ifdef DEBUG
 #if __has_feature(objc_arc)
 #define strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
 #else

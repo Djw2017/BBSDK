@@ -137,7 +137,7 @@
  */
 + (NSString *)getSystemVersion {
     float version = [[UIDevice currentDevice].systemVersion floatValue];
-    NSString *versionStr = [NSString stringWithFormat:@"%f", version];
+    NSString *versionStr = [NSString stringWithFormat:@"%.2f", version];
     return versionStr;
 }
 
@@ -168,6 +168,44 @@
 }
 
 /**
+ 判断当前地区是不是中国大陆
+ 
+ @return 是中国大陆
+ */
++ (BOOL)isMainlandChina {
+    
+    NSString *identifier = [[NSLocale currentLocale] localeIdentifier];
+    if ([identifier hasContain:@"_"]) {
+        NSArray *ary = [identifier componentsSeparatedByString:@"_"];
+        if (ary.count > 1) {
+            if ([ary[1] isEqualToString:@"CN"]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+/**
+ 判断当前语言是中文还是外国语言
+ 
+ @return 中文
+ */
++ (BOOL)isChinese {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
+    NSString *currentLanguage = [languages objectAtIndex:0];
+    NSRange range = [currentLanguage rangeOfString:@"zh"];
+    
+    if (range.location == NSNotFound) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+/**
  判断当前环境是否是繁体中文
  
  @return 是繁体中文
@@ -179,6 +217,25 @@
     NSString *currentLanguage = [languages objectAtIndex:0];
     
     return [currentLanguage hasContain:@"zh-Hant"] || [currentLanguage isEqualToString:@"zh-HK"] || [currentLanguage isEqualToString:@"zh-TW"];
+}
+
+/**
+ 判断当前语言是否是简体中文
+ 
+ @return 中文
+ */
++ (BOOL)isSimpleChinese {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
+    NSString *currentLanguage = [languages objectAtIndex:0];
+    NSRange range = [currentLanguage rangeOfString:@"zh"];
+    
+    if (range.location != NSNotFound && ![BBSystemUtil isTraditionalChinese]) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 /**
@@ -341,7 +398,7 @@
 
 //当前时间戳
 + (NSString *)timestamp{
-    
+
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval a=[dat timeIntervalSince1970];
     return [NSString stringWithFormat:@"%f", a];
@@ -352,6 +409,37 @@
     NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
     long long date = (long long)time;
     return date;
+}
+
++ (int)getAgeWithTimestamp:(long long)birthTime
+{
+    NSDate *date  = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    //以 1970/01/01 GMT为基准，然后过了secs秒的时间
+    NSDate *stampDate2 = [NSDate dateWithTimeIntervalSince1970:birthTime];
+    [formatter setDateFormat:@"YYYY"];
+    NSString *currentYear = [formatter stringFromDate:date];
+    NSString *birthYear   = [formatter stringFromDate:stampDate2];
+    [formatter setDateFormat:@"MM"];
+    NSString *currentMonth = [formatter stringFromDate:date];
+    NSString *birthMonth   = [formatter stringFromDate:stampDate2];
+    if (birthMonth.intValue < currentMonth.intValue) {
+        return currentYear.intValue - birthYear.intValue;
+    } else if (birthMonth.intValue > currentMonth.intValue) {
+        return currentYear.intValue - birthYear.intValue - 1;
+    }else if (birthMonth.intValue == currentMonth.intValue) {
+        [formatter setDateFormat:@"dd"];
+        NSString *currentday = [formatter stringFromDate:date];
+        NSString *birthday   = [formatter stringFromDate:stampDate2];
+        if (birthday.intValue <= currentday.intValue) {
+            return currentYear.intValue - birthYear.intValue;
+        } else {
+            return currentYear.intValue - birthYear.intValue - 1;
+        }
+    }
+    
+    return 0;
 }
 
 /**
@@ -404,6 +492,31 @@
         }
     }
     return NO;
+}
+
+/**
+ 指定时间是否为当天
+ 
+ @param timeStamp 时间戳
+ @return 当天
+ */
++ (BOOL)isToday:(NSTimeInterval)timeStamp {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMdd";
+    
+    NSString *selfDay = [formatter stringFromDate:date];
+    NSString *nowDay = [formatter stringFromDate:[NSDate date]];
+    
+    if ([selfDay isEqualToString:nowDay]) {
+        
+        return YES;
+        
+    } else {
+        return NO;
+        
+    }
 }
 
 #pragma mark - App

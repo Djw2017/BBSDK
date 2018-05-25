@@ -48,11 +48,32 @@
 + (NSString*)getPreferredLanguage;
 
 /**
+ 判断当前地区是不是中国大陆
+ 
+ @return 是中国大陆
+ */
++ (BOOL)isMainlandChina;
+
+/**
+ 判断当前语言是中文还是外国语言
+ 
+ @return 中文
+ */
++ (BOOL)isChinese;
+
+/**
  判断当前环境是否是繁体中文
  
  @return 是繁体中文
  */
 + (BOOL)isTraditionalChinese;
+
+/**
+ 判断当前语言是否是简体中文
+ 
+ @return 中文
+ */
++ (BOOL)isSimpleChinese;
 
 /**
  获取包名
@@ -110,6 +131,8 @@
 /// 当前时间戳，长整型
 + (long long)getCurrentTime;
 
++ (int)getAgeWithTimestamp:(long long)birthTime;
+
 /**
  是否是圣诞节
  
@@ -124,6 +147,13 @@
  */
 + (BOOL)isNewYear;
 
+/**
+ 指定时间是否为当天
+
+ @param timeStamp 时间戳
+ @return 当天
+ */
++ (BOOL)isToday:(NSTimeInterval)timeStamp;
 
 #pragma mark - App
 + (NSString *)currentVersion;

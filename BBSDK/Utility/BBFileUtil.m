@@ -137,7 +137,14 @@
  */
 + (BOOL)createFile:(NSString *)path {
     NSError *error;
-    return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+    
+    BOOL sucsees = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+    if (sucsees) {
+        NSLog(@"创建路径成功%@", path);
+    } else {
+        NSLog(@"不能创建目录 %@\n%@",path, [error localizedDescription]);
+    }
+    return sucsees;
 }
 
 /**
